@@ -16,7 +16,9 @@ body {
 
 body {
     overflow: hidden;
+
     background: #030201;
+
     color: white;
 
     font-family:
@@ -27,7 +29,7 @@ body {
 
 
 /* =========================================
-   ESCENA
+   ESCENA PRINCIPAL
 ========================================= */
 
 .scene {
@@ -41,6 +43,7 @@ body {
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -50,6 +53,7 @@ body {
             rgba(255, 190, 30, 0.13),
             transparent 32%
         ),
+
         linear-gradient(
             180deg,
             #020202 0%,
@@ -87,7 +91,10 @@ body {
     filter: blur(35px);
 
     animation:
-        ambientGlow 8s ease-in-out infinite;
+        ambientGlow
+        8s
+        ease-in-out
+        infinite;
 
     z-index: 0;
 }
@@ -127,7 +134,10 @@ body {
     z-index: 1;
 
     animation:
-        cinematicPulse 6s ease-in-out infinite;
+        cinematicPulse
+        6s
+        ease-in-out
+        infinite;
 }
 
 
@@ -137,6 +147,7 @@ body {
 
 .stars {
     position: absolute;
+
     inset: 0;
 
     z-index: 1;
@@ -146,9 +157,6 @@ body {
 
 .star {
     position: absolute;
-
-    width: 2px;
-    height: 2px;
 
     border-radius: 50%;
 
@@ -160,8 +168,10 @@ body {
         rgba(255, 210, 80, 0.8);
 
     animation:
-        twinkle var(--duration)
-        ease-in-out infinite;
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
 }
 
 
@@ -171,6 +181,7 @@ body {
 
 .particles {
     position: absolute;
+
     inset: 0;
 
     overflow: hidden;
@@ -185,9 +196,6 @@ body {
 
     bottom: -20px;
 
-    width: 3px;
-    height: 3px;
-
     border-radius: 50%;
 
     background:
@@ -198,8 +206,10 @@ body {
         rgba(255, 193, 7, 0.8);
 
     animation:
-        floatParticle var(--duration)
-        linear infinite;
+        floatParticle
+        var(--duration)
+        linear
+        infinite;
 
     animation-delay:
         var(--delay);
@@ -207,16 +217,21 @@ body {
 
 
 /* =========================================
-   RAMO
+   RAMO PRINCIPAL
 ========================================= */
 
 .bouquet-container {
     position: absolute;
 
     left: 50%;
+
     bottom: -8%;
 
-    width: min(650px, 88vw);
+    width:
+        min(
+            650px,
+            88vw
+        );
 
     transform:
         translateX(-50%)
@@ -228,23 +243,19 @@ body {
     z-index: 5;
 
     animation:
-        bouquetEntrance 3.5s
+        bouquetEntrance
+        3.5s
         cubic-bezier(0.16, 1, 0.3, 1)
         0.5s
         forwards;
-
-    will-change:
-        transform,
-        opacity;
 }
 
 .bouquet {
     display: block;
 
     width: 100%;
-    height: auto;
 
-    border: none;
+    height: auto;
 
     object-fit: contain;
 
@@ -252,17 +263,20 @@ body {
         contrast(1.05)
         saturate(1.12)
         brightness(1.04)
+
         drop-shadow(
             0 30px 45px
             rgba(0, 0, 0, 0.75)
         )
+
         drop-shadow(
             0 0 35px
             rgba(255, 193, 7, 0.2)
         );
 
     animation:
-        bouquetFloat 6s
+        bouquetFloat
+        6s
         ease-in-out
         infinite;
 }
@@ -291,8 +305,6 @@ body {
     filter: blur(25px);
 
     z-index: -1;
-
-    pointer-events: none;
 }
 
 
@@ -307,6 +319,7 @@ body {
     left: 50%;
 
     width: 90%;
+
     max-width: 760px;
 
     transform:
@@ -320,7 +333,8 @@ body {
     z-index: 10;
 
     animation:
-        messageEntrance 2.5s
+        messageEntrance
+        2.5s
         ease
         2.7s
         forwards;
@@ -340,8 +354,6 @@ body {
     font-weight: 600;
 
     letter-spacing: 7px;
-
-    opacity: 0.9;
 }
 
 h1 {
@@ -368,6 +380,7 @@ h1 {
 
 .gold-line {
     width: 70px;
+
     height: 1px;
 
     margin: 25px auto;
@@ -406,8 +419,6 @@ h1 {
         );
 
     line-height: 1.7;
-
-    font-weight: 400;
 }
 
 
@@ -415,7 +426,7 @@ h1 {
    BOTÓN
 ========================================= */
 
-button {
+.gift-button {
     display: inline-flex;
 
     align-items: center;
@@ -460,6 +471,8 @@ button {
 
     letter-spacing: 2px;
 
+    text-decoration: none;
+
     cursor: pointer;
 
     backdrop-filter:
@@ -476,7 +489,7 @@ button {
         border-color 0.35s ease;
 }
 
-button:hover {
+.gift-button:hover {
     transform:
         translateY(-4px)
         scale(1.04);
@@ -507,7 +520,7 @@ button:hover {
         );
 }
 
-button:active {
+.gift-button:active {
     transform:
         scale(0.96);
 }
@@ -516,8 +529,10 @@ button:active {
     font-size: 14px;
 
     animation:
-        buttonSparkle 2s
-        ease-in-out infinite;
+        buttonSparkle
+        2s
+        ease-in-out
+        infinite;
 }
 
 
@@ -544,7 +559,7 @@ button:active {
 
 
 /* =========================================
-   GRANO DE PELÍCULA
+   GRANO
 ========================================= */
 
 .film-grain {
@@ -562,38 +577,15 @@ button:active {
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
 
     animation:
-        grainMove 0.25s
+        grainMove
+        0.25s
         steps(2)
         infinite;
 }
 
 
 /* =========================================
-   FLASH
-========================================= */
-
-.cinematic-flash {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 30;
-
-    background: white;
-
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-.scene.opened .cinematic-flash {
-    animation:
-        cinematicFlash 1.2s ease forwards;
-}
-
-
-/* =========================================
-   ANIMACIONES
+   ANIMACIONES PRINCIPALES
 ========================================= */
 
 @keyframes bouquetEntrance {
@@ -629,16 +621,12 @@ button:active {
 
     0%,
     100% {
-        margin-left: 0;
-
         transform:
             translateY(0)
             rotate(0deg);
     }
 
     50% {
-        margin-left: 3px;
-
         transform:
             translateY(-10px)
             rotate(0.4deg);
@@ -807,122 +795,307 @@ button:active {
     }
 }
 
-@keyframes cinematicFlash {
-
-    0% {
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 0.75;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
 
 /* =========================================
-   ABRIR REGALO
+   PÁGINA DEL REGALO
 ========================================= */
 
-.scene.opened .bouquet-container {
+.gift-page {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding:
+        60px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 193, 7, 0.16),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #020202,
+            #0b0702,
+            #160d02
+        );
+
+    color: white;
+}
+
+.gift-glow {
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 193, 7, 0.18),
+            transparent 70%
+        );
+
+    filter: blur(40px);
+
     animation:
-        bouquetReveal 1.8s
-        cubic-bezier(0.16, 1, 0.3, 1)
+        giftGlow
+        6s
+        ease-in-out
+        infinite;
+
+    pointer-events: none;
+}
+
+.gift-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 800px;
+
+    text-align: center;
+
+    z-index: 5;
+
+    animation:
+        giftEntrance
+        1.5s
+        cubic-bezier(.16,1,.3,1)
         forwards;
 }
 
-.scene.opened .message {
-    animation:
-        messageReveal 1.2s
-        ease
-        forwards;
+.gift-small {
+    margin-bottom: 20px;
+
+    color: #f5d36b;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 6px;
 }
 
-.scene.opened .background-glow {
-    animation:
-        glowReveal 1.5s
-        ease
-        forwards;
+.gift-content h1 {
+    font-size:
+        clamp(
+            38px,
+            7vw,
+            76px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 400;
+
+    text-shadow:
+        0 5px 30px
+        rgba(0,0,0,.8);
 }
 
-@keyframes bouquetReveal {
+.gift-line {
+    width: 80px;
+
+    height: 1px;
+
+    margin: 30px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #f5d36b,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(255,193,7,.6);
+}
+
+.gift-message {
+    width: 90%;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    color:
+        rgba(
+            255,
+            245,
+            220,
+            .85
+        );
+
+    font-size:
+        clamp(
+            15px,
+            2vw,
+            20px
+        );
+
+    line-height: 1.8;
+}
+
+.gift-bouquet {
+    width:
+        min(
+            600px,
+            95vw
+        );
+
+    margin:
+        35px auto
+        25px;
+
+    animation:
+        giftFloat
+        5s
+        ease-in-out
+        infinite;
+}
+
+.gift-bouquet img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    filter:
+        contrast(1.05)
+        saturate(1.15)
+        brightness(1.05)
+
+        drop-shadow(
+            0 25px 40px
+            rgba(0,0,0,.8)
+        )
+
+        drop-shadow(
+            0 0 35px
+            rgba(255,193,7,.25)
+        );
+}
+
+.back-button {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding:
+        12px 24px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            211,
+            77,
+            .4
+        );
+
+    border-radius: 50px;
+
+    color: #ffe59a;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-decoration: none;
+
+    transition:
+        .3s ease;
+}
+
+.back-button:hover {
+    background:
+        rgba(
+            255,
+            193,
+            7,
+            .12
+        );
+
+    transform:
+        translateY(-3px);
+}
+
+@keyframes giftEntrance {
 
     0% {
-        transform:
-            translateX(-50%)
-            translateY(0)
-            scale(1);
-    }
+        opacity: 0;
 
-    45% {
         transform:
-            translateX(-50%)
-            translateY(-20px)
-            scale(1.08);
+            translateY(40px)
+            scale(.96);
+
+        filter: blur(10px);
     }
 
     100% {
-        transform:
-            translateX(-50%)
-            translateY(-8px)
-            scale(1.03);
-    }
-}
-
-@keyframes messageReveal {
-
-    0% {
         opacity: 1;
 
         transform:
-            translateX(-50%)
             translateY(0)
             scale(1);
+
+        filter: blur(0);
+    }
+}
+
+@keyframes giftFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
     }
 
     50% {
-        opacity: 0.15;
-
         transform:
-            translateX(-50%)
-            translateY(-15px)
-            scale(0.97);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateX(-50%)
-            translateY(0)
-            scale(1);
+            translateY(-12px);
     }
 }
 
-@keyframes glowReveal {
+@keyframes giftGlow {
 
-    0% {
+    0%,
+    100% {
         transform:
-            scale(1);
+            scale(.9);
 
-        opacity: 0.65;
+        opacity: .6;
     }
 
     50% {
         transform:
-            scale(1.35);
+            scale(1.15);
 
         opacity: 1;
-    }
-
-    100% {
-        transform:
-            scale(1.08);
-
-        opacity: 0.85;
     }
 }
 
@@ -939,6 +1112,7 @@ button:active {
 
     .bouquet-container {
         width: 108vw;
+
         bottom: -2%;
     }
 
@@ -968,19 +1142,40 @@ button:active {
         line-height: 1.6;
     }
 
-    button {
+    .gift-button {
         margin-top: 25px;
 
         padding:
-            13px
-            23px;
+            13px 23px;
 
         font-size: 10px;
     }
 
     .cinematic-light {
         width: 100vw;
+
         height: 100vw;
+    }
+
+    .gift-page {
+        align-items: flex-start;
+
+        padding-top: 55px;
+    }
+
+    .gift-content h1 {
+        font-size: 39px;
+    }
+
+    .gift-message {
+        font-size: 15px;
+    }
+
+    .gift-bouquet {
+        width: 105vw;
+
+        margin-left:
+            -2.5vw;
     }
 }
 
