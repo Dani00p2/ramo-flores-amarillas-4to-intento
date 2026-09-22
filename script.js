@@ -1,17 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const homeScene =
-        document.getElementById("homeScene");
-
-    const giftScene =
-        document.getElementById("giftScene");
-
-    const startButton =
-        document.getElementById("startButton");
-
-    const backButton =
-        document.getElementById("backButton");
-
     const starsContainer =
         document.querySelector(".stars");
 
@@ -20,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bouquet =
         document.querySelector(".bouquet");
+
+    const homeScene =
+        document.getElementById("homeScene");
 
 
     /* =====================================
@@ -194,81 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       ABRIR REGALO
-    ===================================== */
-
-    if (startButton) {
-
-        startButton.addEventListener(
-            "click",
-            () => {
-
-                homeScene.style.opacity =
-                    "0";
-
-                homeScene.style.transform =
-                    "scale(0.96)";
-
-                homeScene.style.transition =
-                    "opacity .7s ease, transform .7s ease";
-
-
-                setTimeout(() => {
-
-                    homeScene.style.display =
-                        "none";
-
-                    giftScene.classList.add(
-                        "active"
-                    );
-
-                }, 650);
-
-            }
-        );
-    }
-
-
-    /* =====================================
-       VOLVER
-    ===================================== */
-
-    if (backButton) {
-
-        backButton.addEventListener(
-            "click",
-            () => {
-
-                giftScene.classList.remove(
-                    "active"
-                );
-
-
-                setTimeout(() => {
-
-                    homeScene.style.display =
-                        "flex";
-
-                    requestAnimationFrame(
-                        () => {
-
-                            homeScene.style.opacity =
-                                "1";
-
-                            homeScene.style.transform =
-                                "scale(1)";
-                        }
-                    );
-
-                }, 700);
-
-            }
-        );
-    }
-
-
-    /* =====================================
-       INICIO
+       INICIAR EFECTOS
     ===================================== */
 
     createStars();
