@@ -1,20 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const scene =
-        document.getElementById("scene");
+    const homeScene =
+        document.getElementById("homeScene");
 
-    const particlesContainer =
-        document.querySelector(".particles");
+    const giftScene =
+        document.getElementById("giftScene");
+
+    const startButton =
+        document.getElementById("startButton");
+
+    const backButton =
+        document.getElementById("backButton");
 
     const starsContainer =
         document.querySelector(".stars");
+
+    const particlesContainer =
+        document.querySelector(".particles");
 
     const bouquet =
         document.querySelector(".bouquet");
 
 
     /* =====================================
-       CREAR ESTRELLAS
+       ESTRELLAS
     ===================================== */
 
     function createStars() {
@@ -28,12 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? 35
                 : 70;
 
-        for (let i = 0; i < amount; i++) {
+        for (
+            let i = 0;
+            i < amount;
+            i++
+        ) {
 
             const star =
                 document.createElement("span");
 
-            star.className = "star";
+            star.className =
+                "star";
 
             star.style.left =
                 `${Math.random() * 100}%`;
@@ -66,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       CREAR PARTÍCULAS
+       PARTÍCULAS
     ===================================== */
 
     function createParticles() {
@@ -80,7 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? 25
                 : 45;
 
-        for (let i = 0; i < amount; i++) {
+        for (
+            let i = 0;
+            i < amount;
+            i++
+        ) {
 
             const particle =
                 document.createElement("span");
@@ -123,16 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       MOVIMIENTO DEL RAMO
+       PARALLAX
     ===================================== */
 
     function enableParallax() {
 
-        if (!scene || !bouquet) {
+        if (
+            !homeScene ||
+            !bouquet
+        ) {
             return;
         }
 
-        scene.addEventListener(
+        homeScene.addEventListener(
             "mousemove",
             (event) => {
 
@@ -158,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
-        scene.addEventListener(
+        homeScene.addEventListener(
             "mouseleave",
             () => {
 
@@ -173,7 +194,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       INICIAR
+       ABRIR REGALO
+    ===================================== */
+
+    if (startButton) {
+
+        startButton.addEventListener(
+            "click",
+            () => {
+
+                homeScene.style.opacity =
+                    "0";
+
+                homeScene.style.transform =
+                    "scale(0.96)";
+
+                homeScene.style.transition =
+                    "opacity .7s ease, transform .7s ease";
+
+
+                setTimeout(() => {
+
+                    homeScene.style.display =
+                        "none";
+
+                    giftScene.classList.add(
+                        "active"
+                    );
+
+                }, 650);
+
+            }
+        );
+    }
+
+
+    /* =====================================
+       VOLVER
+    ===================================== */
+
+    if (backButton) {
+
+        backButton.addEventListener(
+            "click",
+            () => {
+
+                giftScene.classList.remove(
+                    "active"
+                );
+
+
+                setTimeout(() => {
+
+                    homeScene.style.display =
+                        "flex";
+
+                    requestAnimationFrame(
+                        () => {
+
+                            homeScene.style.opacity =
+                                "1";
+
+                            homeScene.style.transform =
+                                "scale(1)";
+                        }
+                    );
+
+                }, 700);
+
+            }
+        );
+    }
+
+
+    /* =====================================
+       INICIO
     ===================================== */
 
     createStars();
