@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Un pequeño detalle hecho con cariño."
+    >
 
     <title>Para ti 🌼</title>
 
@@ -11,41 +17,71 @@
 
 <body>
 
-    <main class="scene">
+    <main class="scene" id="scene">
 
-        <div class="light"></div>
-
+        <!-- Fondo -->
+        <div class="background-glow"></div>
+        <div class="stars"></div>
         <div class="particles"></div>
 
+        <!-- Luz principal -->
+        <div class="cinematic-light"></div>
+
+        <!-- Ramo -->
         <div class="bouquet-container">
+
+            <div class="bouquet-glow"></div>
+
             <img
                 src="assets/images/ramo.jpg"
                 alt="Ramo de flores amarillas"
                 class="bouquet"
             >
+
         </div>
 
+        <!-- Mensaje -->
         <section class="message">
-            <p class="small-text">Para ti...</p>
+
+            <p class="eyebrow">
+                PARA TI
+            </p>
 
             <h1>
                 Un pequeño pedacito<br>
-                de mi corazón 🌼
+                de mi corazón
             </h1>
 
+            <div class="gold-line"></div>
+
             <p class="subtitle">
-                Porque hay flores que simplemente<br>
+                Porque hay flores que simplemente
                 tienen que llegar a la persona correcta.
             </p>
 
-            <button id="startButton">
-                Abrir mi regalo
+            <button
+                id="startButton"
+                type="button"
+            >
+                <span>ABRIR MI REGALO</span>
+                <span class="button-icon">✦</span>
             </button>
+
         </section>
+
+        <!-- Flash cinematográfico -->
+        <div class="cinematic-flash"></div>
+
+        <!-- Viñeta -->
+        <div class="vignette"></div>
+
+        <!-- Grano de película -->
+        <div class="film-grain"></div>
 
     </main>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
