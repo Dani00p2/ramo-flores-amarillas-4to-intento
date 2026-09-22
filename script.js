@@ -1,178 +1,295 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const scene = document.querySelector(".scene");
-    const particlesContainer = document.querySelector(".particles");
-    const startButton = document.getElementById("startButton");
+    const scene = document.getElementById("scene");
+    const particlesContainer =
+        document.querySelector(".particles");
 
-    // ==============================
-    // PARTÍCULAS DORADAS
-    // ==============================
+    const starsContainer =
+        document.querySelector(".stars");
 
-    function createParticle() {
+    const bouquet =
+        document.querySelector(".bouquet");
 
-        const particle = document.createElement("span");
+    const startButton =
+        document.getElementById("startButton");
 
-        particle.style.position = "absolute";
-        particle.style.width = `${Math.random() * 4 + 1}px`;
-        particle.style.height = particle.style.width;
-        particle.style.borderRadius = "50%";
 
-        particle.style.background = "rgba(255, 214, 79, 0.9)";
+    /* =====================================
+       ESTRELLAS
+    ===================================== */
 
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.bottom = `${Math.random() * 20 - 10}%`;
+    function createStars() {
 
-        particle.style.boxShadow =
-            "0 0 8px rgba(255, 193, 7, 0.8)";
+        const amount =
+            window.innerWidth < 600
+                ? 35
+                : 70;
 
-        particle.style.pointerEvents = "none";
+        for (let i = 0; i < amount; i++) {
 
-        const duration = Math.random() * 8 + 6;
-        const delay = Math.random() * 5;
+            const star =
+                document.createElement("span");
 
-        particle.animate(
-            [
-                {
-                    transform: "translateY(0) scale(0.4)",
-                    opacity: 0
-                },
-                {
-                    opacity: 0.9,
-                    offset: 0.2
-                },
-                {
-                    transform:
-                        `translateY(-${Math.random() * 500 + 300}px)
-                         translateX(${Math.random() * 100 - 50}px)
-                         scale(1)`,
-                    opacity: 0
-                }
-            ],
-            {
-                duration: duration * 1000,
-                delay: delay * 1000,
-                iterations: Infinity,
-                easing: "ease-out"
+            star.className = "star";
+
+            star.style.left =
+                `${Math.random() * 100}%`;
+
+            star.style.top =
+                `${Math.random() * 100}%`;
+
+            star.style.setProperty(
+                "--duration",
+                `${2 + Math.random() * 4}s`
+            );
+
+            star.style.animationDelay =
+                `${Math.random() * 5}s`;
+
+            const size =
+                Math.random() * 2.5 + 1;
+
+            star.style.width =
+                `${size}px`;
+
+            star.style.height =
+                `${size}px`;
+
+            starsContainer.appendChild(star);
+        }
+    }
+
+
+    /* =====================================
+       PARTÍCULAS
+    ===================================== */
+
+    function createParticles() {
+
+        const amount =
+            window.innerWidth < 600
+                ? 25
+                : 45;
+
+        for (let i = 0; i < amount; i++) {
+
+            const particle =
+                document.createElement("span");
+
+            particle.className =
+                "particle";
+
+            particle.style.left =
+                `${Math.random() * 100}%`;
+
+            particle.style.setProperty(
+                "--duration",
+                `${7 + Math.random() * 8}s`
+            );
+
+            particle.style.setProperty(
+                "--delay",
+                `${Math.random() * 8}s`
+            );
+
+            particle.style.setProperty(
+                "--drift",
+                `${Math.random() * 180 - 90}px`
+            );
+
+            const size =
+                Math.random() * 3 + 1;
+
+            particle.style.width =
+                `${size}px`;
+
+            particle.style.height =
+                `${size}px`;
+
+            particlesContainer.appendChild(
+                particle
+            );
+        }
+    }
+
+
+    /* =====================================
+       MOVIMIENTO DEL RAMO
+    ===================================== */
+
+    function enableParallax() {
+
+        if (!bouquet) {
+            return;
+        }
+
+        scene.addEventListener(
+            "mousemove",
+            (event) => {
+
+                const x =
+                    (event.clientX /
+                        window.innerWidth - 0.5)
+                    * 12;
+
+                const y =
+                    (event.clientY /
+                        window.innerHeight - 0.5)
+                    * 8;
+
+                bouquet.style.marginLeft =
+                    `${x}px`;
+
+                bouquet.style.marginTop =
+                    `${y}px`;
             }
         );
 
-        particlesContainer.appendChild(particle);
-    }
+        scene.addEventListener(
+            "mouseleave",
+            () => {
 
-    // Crear partículas
-    for (let i = 0; i < 45; i++) {
-        createParticle();
-    }
-
-
-    // ==============================
-    // MOVIMIENTO SUAVE DEL RAMO
-    // ==============================
-
-    const bouquet = document.querySelector(".bouquet");
-
-    if (bouquet) {
-
-        scene.addEventListener("mousemove", (event) => {
-
-            const x =
-                (event.clientX / window.innerWidth - 0.5) * 10;
-
-            const y =
-                (event.clientY / window.innerHeight - 0.5) * 10;
-
-            bouquet.style.transform =
-                `translate(${x}px, ${y}px)`;
-        });
-
-        scene.addEventListener("mouseleave", () => {
-
-            bouquet.style.transform =
-                "translate(0, 0)";
-        });
+                bouquet.style.marginLeft = "0";
+                bouquet.style.marginTop = "0";
+            }
+        );
     }
 
 
-    // ==============================
-    // BOTÓN PRINCIPAL
-    // ==============================
+    /* =====================================
+       DESTELLO AL HACER CLICK
+    ===================================== */
 
-    if (startButton) {
+    function createClickFlash(event) {
 
-        startButton.addEventListener("click", () => {
+        const flash =
+            document.createElement("div");
 
-            scene.classList.add("opened");
+        flash.style.position =
+            "absolute";
 
-            startButton.innerHTML = "🌼";
+        flash.style.left =
+            `${event.clientX}px`;
 
-            startButton.style.transform =
-                "scale(0.8)";
+        flash.style.top =
+            `${event.clientY}px`;
 
-            setTimeout(() => {
+        flash.style.width =
+            "20px";
 
-                startButton.innerHTML =
-                    "Mi regalo para ti";
+        flash.style.height =
+            "20px";
 
-                startButton.style.transform =
-                    "scale(1)";
-
-            }, 700);
-        });
-    }
-
-
-    // ==============================
-    // EFECTO DE LUZ AL HACER CLICK
-    // ==============================
-
-    scene.addEventListener("click", (event) => {
-
-        const flash = document.createElement("div");
-
-        flash.style.position = "absolute";
-        flash.style.left = `${event.clientX}px`;
-        flash.style.top = `${event.clientY}px`;
-
-        flash.style.width = "20px";
-        flash.style.height = "20px";
-
-        flash.style.borderRadius = "50%";
+        flash.style.borderRadius =
+            "50%";
 
         flash.style.background =
-            "rgba(255, 214, 79, 0.8)";
+            "rgba(255, 220, 100, 0.9)";
 
         flash.style.boxShadow =
-            "0 0 40px 20px rgba(255, 193, 7, 0.25)";
+            "0 0 45px 20px rgba(255, 193, 7, 0.35)";
 
-        flash.style.pointerEvents = "none";
+        flash.style.pointerEvents =
+            "none";
 
         flash.style.transform =
             "translate(-50%, -50%)";
 
+        flash.style.zIndex =
+            "50";
+
         scene.appendChild(flash);
 
-        flash.animate(
-            [
+        const animation =
+            flash.animate(
+                [
+                    {
+                        transform:
+                            "translate(-50%, -50%) scale(0.5)",
+
+                        opacity: 0.9
+                    },
+
+                    {
+                        transform:
+                            "translate(-50%, -50%) scale(8)",
+
+                        opacity: 0
+                    }
+                ],
                 {
-                    transform:
-                        "translate(-50%, -50%) scale(0.5)",
-                    opacity: 0.9
-                },
-                {
-                    transform:
-                        "translate(-50%, -50%) scale(8)",
-                    opacity: 0
+                    duration: 900,
+
+                    easing: "cubic-bezier(.16,1,.3,1)"
                 }
-            ],
-            {
-                duration: 900,
-                easing: "ease-out"
+            );
+
+        animation.onfinish = () => {
+            flash.remove();
+        };
+    }
+
+
+    /* =====================================
+       BOTÓN
+    ===================================== */
+
+    if (startButton) {
+
+        startButton.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                scene.classList.add("opened");
+
+                startButton.disabled =
+                    true;
+
+                startButton.style.pointerEvents =
+                    "none";
+
+                startButton.querySelector(
+                    "span:first-child"
+                ).textContent =
+                    "PARA TI";
+
+                setTimeout(() => {
+
+                    startButton.disabled =
+                        false;
+
+                    startButton.style.pointerEvents =
+                        "auto";
+
+                }, 1300);
             }
         );
+    }
 
-        setTimeout(() => {
-            flash.remove();
-        }, 900);
-    });
+
+    /* =====================================
+       CLICK GENERAL
+    ===================================== */
+
+    scene.addEventListener(
+        "click",
+        (event) => {
+
+            createClickFlash(event);
+        }
+    );
+
+
+    /* =====================================
+       INICIO
+    ===================================== */
+
+    createStars();
+
+    createParticles();
+
+    enableParallax();
 
 });
