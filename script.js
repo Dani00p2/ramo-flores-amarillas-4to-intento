@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const scene = document.getElementById("scene");
+    const scene =
+        document.getElementById("scene");
+
     const particlesContainer =
         document.querySelector(".particles");
 
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       MOVIMIENTO DEL RAMO
+       PARALLAX DEL RAMO
     ===================================== */
 
     function enableParallax() {
@@ -127,15 +129,27 @@ document.addEventListener("DOMContentLoaded", () => {
             "mousemove",
             (event) => {
 
+                if (
+                    scene.classList.contains(
+                        "opened"
+                    )
+                ) {
+                    return;
+                }
+
                 const x =
-                    (event.clientX /
-                        window.innerWidth - 0.5)
-                    * 12;
+                    (
+                        event.clientX /
+                        window.innerWidth
+                        - 0.5
+                    ) * 12;
 
                 const y =
-                    (event.clientY /
-                        window.innerHeight - 0.5)
-                    * 8;
+                    (
+                        event.clientY /
+                        window.innerHeight
+                        - 0.5
+                    ) * 8;
 
                 bouquet.style.marginLeft =
                     `${x}px`;
@@ -149,89 +163,69 @@ document.addEventListener("DOMContentLoaded", () => {
             "mouseleave",
             () => {
 
-                bouquet.style.marginLeft = "0";
-                bouquet.style.marginTop = "0";
+                bouquet.style.marginLeft =
+                    "0";
+
+                bouquet.style.marginTop =
+                    "0";
             }
         );
     }
 
 
     /* =====================================
-       DESTELLO AL HACER CLICK
+       FLASH DE PANTALLA
     ===================================== */
 
-    function createClickFlash(event) {
+    function createFlash() {
 
         const flash =
             document.createElement("div");
 
         flash.style.position =
-            "absolute";
+            "fixed";
 
-        flash.style.left =
-            `${event.clientX}px`;
-
-        flash.style.top =
-            `${event.clientY}px`;
-
-        flash.style.width =
-            "20px";
-
-        flash.style.height =
-            "20px";
-
-        flash.style.borderRadius =
-            "50%";
+        flash.style.inset =
+            "0";
 
         flash.style.background =
-            "rgba(255, 220, 100, 0.9)";
+            "white";
 
-        flash.style.boxShadow =
-            "0 0 45px 20px rgba(255, 193, 7, 0.35)";
+        flash.style.opacity =
+            "0";
 
         flash.style.pointerEvents =
             "none";
 
-        flash.style.transform =
-            "translate(-50%, -50%)";
-
         flash.style.zIndex =
-            "50";
+            "100";
 
-        scene.appendChild(flash);
+        document.body.appendChild(flash);
 
-        const animation =
-            flash.animate(
-                [
-                    {
-                        transform:
-                            "translate(-50%, -50%) scale(0.5)",
-
-                        opacity: 0.9
-                    },
-
-                    {
-                        transform:
-                            "translate(-50%, -50%) scale(8)",
-
-                        opacity: 0
-                    }
-                ],
+        flash.animate(
+            [
                 {
-                    duration: 900,
-
-                    easing: "cubic-bezier(.16,1,.3,1)"
+                    opacity: 0
+                },
+                {
+                    opacity: 0.8
+                },
+                {
+                    opacity: 0
                 }
-            );
-
-        animation.onfinish = () => {
+            ],
+            {
+                duration: 900,
+                easing: "ease-out"
+            }
+        ).onfinish = () => {
             flash.remove();
         };
     }
 
 
     /* =====================================
-       BOTÓN
+       ABRIR REGALO
     ===================================== */
 
     if (startButton) {
@@ -240,9 +234,42 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             (event) => {
 
+                event.preventDefault();
+
                 event.stopPropagation();
 
-                scene.classList.add("opened");
+                if (
+                    scene.classList.contains(
+                        "opened"
+                    )
+                ) {
+                    return;
+                }
+
+                /* Activar animación */
+
+                scene.classList.add(
+                    "opened"
+                );
+
+                /* Primer destello */
+
+                createFlash();
+
+                /* Cambiar texto */
+
+                const text =
+                    startButton.querySelector(
+                        "span:first-child"
+                    );
+
+                if (text) {
+
+                    text.textContent =
+                        "PARA TI ✦";
+                }
+
+                /* Desactivar botón */
 
                 startButton.disabled =
                     true;
@@ -250,20 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 startButton.style.pointerEvents =
                     "none";
 
-                startButton.querySelector(
-                    "span:first-child"
-                ).textContent =
-                    "PARA TI";
+                /* Segundo destello */
 
                 setTimeout(() => {
 
-                    startButton.disabled =
-                        false;
+                    createFlash();
 
-                    startButton.style.pointerEvents =
-                        "auto";
-
-                }, 1300);
+                }, 500);
             }
         );
     }
@@ -277,7 +297,75 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         (event) => {
 
-            createClickFlash(event);
+            if (
+                event.target === startButton ||
+                startButton.contains(event.target)
+            ) {
+                return;
+            }
+
+            const flash =
+                document.createElement("div");
+
+            flash.style.position =
+                "fixed";
+
+            flash.style.left =
+                `${event.clientX}px`;
+
+            flash.style.top =
+                `${event.clientY}px`;
+
+            flash.style.width =
+                "20px";
+
+            flash.style.height =
+                "20px";
+
+            flash.style.borderRadius =
+                "50%";
+
+            flash.style.background =
+                "rgba(255,220,100,0.9)";
+
+            flash.style.boxShadow =
+                "0 0 45px 20px rgba(255,193,7,0.35)";
+
+            flash.style.pointerEvents =
+                "none";
+
+            flash.style.zIndex =
+                "110";
+
+            document.body.appendChild(
+                flash
+            );
+
+            flash.animate(
+                [
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(.5)",
+
+                        opacity: 0.9
+                    },
+
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(8)",
+
+                        opacity: 0
+                    }
+                ],
+                {
+                    duration: 900,
+
+                    easing:
+                        "cubic-bezier(.16,1,.3,1)"
+                }
+            ).onfinish = () => {
+                flash.remove();
+            };
         }
     );
 
