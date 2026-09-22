@@ -2,17 +2,11 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Un pequeño detalle hecho con cariño."
     >
 
     <title>Para ti 🌼</title>
@@ -21,90 +15,144 @@
         rel="stylesheet"
         href="style.css"
     >
-
 </head>
 
 <body>
 
-    <main
-        class="scene"
-        id="scene"
-    >
+    <main id="app">
 
-        <!-- FONDO -->
+        <!-- =========================
+             ESCENA INICIAL
+        ========================== -->
 
-        <div class="background-glow"></div>
+        <section
+            class="scene"
+            id="homeScene"
+        >
 
-        <div class="stars"></div>
+            <div class="background-glow"></div>
 
-        <div class="particles"></div>
+            <div class="stars"></div>
 
-        <div class="cinematic-light"></div>
+            <div class="particles"></div>
 
-
-        <!-- RAMO -->
-
-        <div class="bouquet-container">
-
-            <div class="bouquet-glow"></div>
-
-            <img
-                src="assets/images/ramo.jpg"
-                alt="Ramo de flores amarillas"
-                class="bouquet"
-            >
-
-        </div>
+            <div class="cinematic-light"></div>
 
 
-        <!-- MENSAJE -->
+            <div class="bouquet-container">
 
-        <section class="message">
+                <div class="bouquet-glow"></div>
 
-            <p class="eyebrow">
-                PARA TI
-            </p>
+                <img
+                    src="assets/images/ramo.jpg"
+                    alt="Ramo de flores amarillas"
+                    class="bouquet"
+                >
 
-            <h1>
-                Un pequeño pedacito<br>
-                de mi corazón
-            </h1>
-
-            <div class="gold-line"></div>
-
-            <p class="subtitle">
-                Porque hay flores que simplemente
-                tienen que llegar a la persona correcta.
-            </p>
+            </div>
 
 
-            <!-- BOTÓN REAL -->
+            <section class="message">
 
-            <a
-                href="regalo.html"
-                class="gift-button"
-            >
+                <p class="eyebrow">
+                    PARA TI
+                </p>
 
-                <span>
-                    ABRIR MI REGALO
-                </span>
+                <h1>
+                    Un pequeño pedacito<br>
+                    de mi corazón
+                </h1>
 
-                <span class="button-icon">
-                    ✦
-                </span>
+                <div class="gold-line"></div>
 
-            </a>
+                <p class="subtitle">
+                    Porque hay flores que simplemente
+                    tienen que llegar a la persona correcta.
+                </p>
+
+                <button
+                    id="startButton"
+                    class="gift-button"
+                    type="button"
+                >
+
+                    <span>
+                        ABRIR MI REGALO
+                    </span>
+
+                    <span class="button-icon">
+                        ✦
+                    </span>
+
+                </button>
+
+            </section>
+
+
+            <div class="vignette"></div>
+
+            <div class="film-grain"></div>
 
         </section>
 
 
-        <!-- EFECTOS -->
+        <!-- =========================
+             ESCENA DEL REGALO
+        ========================== -->
 
-        <div class="cinematic-flash"></div>
+        <section
+            class="gift-scene"
+            id="giftScene"
+        >
 
-        <div class="vignette"></div>
+            <div class="gift-glow"></div>
 
-        <div class="film-grain"></div>
+
+            <div class="gift-content">
+
+                <p class="gift-small">
+                    ESTE RAMO ES PARA TI
+                </p>
+
+
+                <h2>
+                    Porque tú<br>
+                    mereces flores amarillas 🌼
+                </h2>
+
+
+                <div class="gift-line"></div>
+
+
+                <p class="gift-message">
+                    No necesitaba una fecha especial
+                    para darte un pequeño detalle.
+                    Solo quería recordarte
+                    lo especial que eres para mí.
+                </p>
+
+
+                <div class="gift-bouquet">
+
+                    <img
+                        src="assets/images/ramo.jpg"
+                        alt="Ramo de flores amarillas"
+                    >
+
+                </div>
+
+
+                <button
+                    id="backButton"
+                    class="back-button"
+                    type="button"
+                >
+                    ← VOLVER
+                </button>
+
+            </div>
+
+        </section>
 
     </main>
 
